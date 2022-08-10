@@ -17,11 +17,11 @@ class HomeScreen extends StatelessWidget {
         height: maxHeight,
         width: maxWidth,
         child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-            child: isMobile(context)
-                ? const HomeScreenMobile()
-                : const HomeScreenDesktop()),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          child: isMobile(context)
+              ? const HomeScreenMobile()
+              : const HomeScreenDesktop(),
+        ),
       ),
     );
   }
