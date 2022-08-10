@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/components/buttons.dart';
 import 'package:flutter_login/components/welcome_text.dart';
-import 'package:flutter_login/responsive.dart';
 import 'package:flutter_login/screens/home/welcome_logo.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,9 +17,27 @@ class HomeScreen extends StatelessWidget {
         width: maxWidth,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-          child: isMobile(context)
-              ? const HomeScreenMobile()
-              : const HomeScreenDesktop(),
+          child: LayoutBuilder(
+            builder: ((context, constraints) {
+              final bool isMobile = constraints.maxWidth <= 650;
+              double constraintsHeight = constraints.maxHeight;
+              double constraintsWidth = constraints.maxWidth;
+
+              if (isMobile) {
+                return HomeScreenMobile(
+                  constraintsHeight: constraintsHeight,
+                  constraintsWidth: constraintsWidth,
+                  isMobile: true,
+                );
+              } else {
+                return HomeScreenDesktop(
+                  constraintsHeight: constraintsHeight,
+                  constraintsWidth: constraintsWidth,
+                  isMobile: false,
+                );
+              }
+            }),
+          ),
         ),
       ),
     );
@@ -28,75 +45,87 @@ class HomeScreen extends StatelessWidget {
 }
 
 class HomeScreenMobile extends StatelessWidget {
-  const HomeScreenMobile({Key? key}) : super(key: key);
+  const HomeScreenMobile({
+    Key? key,
+    required this.constraintsHeight,
+    required this.constraintsWidth,
+    required this.isMobile,
+  }) : super(key: key);
+
+  final double constraintsHeight;
+  final double constraintsWidth;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: ((context, constraints) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: const [
-            WelcomeLogo(),
-            Spacer(),
-            WelcomeText(),
-            Buttons(),
-          ],
-        );
-      }),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        const WelcomeLogo(),
+        const Spacer(),
+        WelcomeText(
+          isMobile: isMobile,
+        ),
+        const Buttons(),
+      ],
     );
   }
 }
 
 class HomeScreenDesktop extends StatelessWidget {
-  const HomeScreenDesktop({Key? key}) : super(key: key);
+  const HomeScreenDesktop({
+    Key? key,
+    required this.constraintsHeight,
+    required this.constraintsWidth,
+    required this.isMobile,
+  }) : super(key: key);
+
+  final double constraintsHeight;
+  final double constraintsWidth;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: ((context, constraints) {
-        double maxHeight = constraints.maxWidth;
-        double maxWidth = constraints.maxWidth;
-        return SafeArea(
-          child: SizedBox(
-            height: maxHeight,
-            width: maxWidth,
-            child: Row(
-              children: [
-                SizedBox(
-                  width: constraints.maxWidth / 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const WelcomeLogo(),
-                        SizedBox(height: constraints.maxHeight / 8),
-                        const WelcomeText(),
-                      ],
+    return SafeArea(
+      child: SizedBox(
+        height: constraintsHeight,
+        width: constraintsWidth,
+        child: Row(
+          children: [
+            SizedBox(
+              width: constraintsWidth / 2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const WelcomeLogo(),
+                    SizedBox(height: constraintsHeight / 8),
+                    WelcomeText(
+                      isMobile: isMobile,
                     ),
-                  ),
+                  ],
                 ),
-                SizedBox(
-                  width: constraints.maxWidth / 2,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        Buttons(),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        );
-      }),
+            SizedBox(
+              width: constraintsWidth / 2,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Buttons(),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

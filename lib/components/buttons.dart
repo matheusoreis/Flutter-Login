@@ -35,12 +35,13 @@ class Buttons extends StatelessWidget {
         ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-              minimumSize: Size(maxWidth, 56),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              side: const BorderSide(width: 2.0, color: Colors.white),
-              primary: const Color(0XFF186ACB)),
+            minimumSize: Size(maxWidth, 56),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            side: const BorderSide(width: 2.0, color: Colors.white),
+            primary: const Color(0XFF186ACB),
+          ),
           child: const Text('Sign Up'),
         ),
       ],
