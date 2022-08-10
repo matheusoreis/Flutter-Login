@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 // Mobile
-bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 750;
+bool isMobile(BuildContext context) => MediaQuery.of(context).size.width < 650;
 
 // Desktop
 bool isDesktop(BuildContext context) =>
-    MediaQuery.of(context).size.width >= 750;
+    MediaQuery.of(context).size.width >= 650;

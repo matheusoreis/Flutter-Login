@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/constants.dart';
 
 class WelcomeLogo extends StatelessWidget {
   const WelcomeLogo({Key? key}) : super(key: key);

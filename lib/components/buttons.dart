@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login/components/welcome_text.dart';
 import 'package:flutter_login/constants.dart';
 
 class Buttons extends StatelessWidget {

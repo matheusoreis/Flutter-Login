@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/components/buttons.dart';
 import 'package:flutter_login/components/welcome_text.dart';
+import 'package:flutter_login/responsive.dart';
 import 'package:flutter_login/screens/home/welcome_logo.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,16 +18,61 @@ class HomeScreen extends StatelessWidget {
         width: maxWidth,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              WelcomeLogo(),
-              Spacer(),
-              WelcomeText(),
-              Buttons(),
-            ],
-          ),
+          child: isMobile(context)
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    WelcomeLogo(),
+                    Spacer(),
+                    WelcomeText(),
+                    Buttons(),
+                  ],
+                )
+              : LayoutBuilder(
+                  builder: ((context, constraints) {
+                    return SafeArea(
+                      child: SizedBox(
+                        height: maxHeight,
+                        width: maxWidth,
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: constraints.maxWidth / 2,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const WelcomeLogo(),
+                                    SizedBox(height: constraints.maxHeight / 8),
+                                    const WelcomeText(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: constraints.maxWidth / 2,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: const [
+                                    Buttons(),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
         ),
       ),
     );
