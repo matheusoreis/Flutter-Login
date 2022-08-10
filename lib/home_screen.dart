@@ -19,15 +19,19 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: isMobile(context)
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    WelcomeLogo(),
-                    Spacer(),
-                    WelcomeText(),
-                    Buttons(),
-                  ],
+              ? LayoutBuilder(
+                  builder: ((context, constraints) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        WelcomeLogo(),
+                        Spacer(),
+                        WelcomeText(),
+                        Buttons(),
+                      ],
+                    );
+                  }),
                 )
               : LayoutBuilder(
                   builder: ((context, constraints) {
