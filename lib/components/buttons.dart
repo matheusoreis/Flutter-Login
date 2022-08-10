@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/components/welcome_text.dart';
 import 'package:flutter_login/constants.dart';
 
 class Buttons extends StatelessWidget {
@@ -10,6 +11,7 @@ class Buttons extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        const WelcomeText(),
         Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20),
           child: ElevatedButton(

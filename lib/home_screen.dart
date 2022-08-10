@@ -11,23 +11,20 @@ class HomeScreen extends StatelessWidget {
     double maxHeight = MediaQuery.of(context).size.height;
     double maxWidth = MediaQuery.of(context).size.width;
 
-    return SingleChildScrollView(
-      child: SafeArea(
-        child: Container(
-          constraints: BoxConstraints(
-            maxHeight: maxHeight,
-            maxWidth: maxWidth,
-          ),
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              WelcomeLogo(),
-              WelcomeText(),
-              Buttons(),
-            ],
-          ),
+    return SafeArea(
+      child: Container(
+        constraints: BoxConstraints(
+          maxHeight: maxHeight,
+          maxWidth: maxWidth,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            WelcomeLogo(),
+            Buttons(),
+          ],
         ),
       ),
     );
