@@ -9,9 +9,9 @@ class Buttons extends StatelessWidget {
   Widget build(BuildContext context) {
     double maxWidth = MediaQuery.of(context).size.width;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const WelcomeText(),
         Padding(
           padding: const EdgeInsets.only(top: 20, bottom: 20),
           child: ElevatedButton(
@@ -22,6 +22,7 @@ class Buttons extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               primary: Colors.white,
+              onPrimary: Colors.blue[800],
             ),
             child: const Text(
               'Log In',
