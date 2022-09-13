@@ -1,16 +1,11 @@
-# flutter_login
 
-A new Flutter project.
+## Flutter Login Screen Design
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+A simple application that I developed for study purposes using Flutter and Dart.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Pictures
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![asds](https://i.imgur.com/6DHFw0O.png)
+![asds](https://i.imgur.com/QFWJZf2.png)
